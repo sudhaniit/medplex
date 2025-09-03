@@ -1,0 +1,4 @@
+server.log
+frontend/node_modules/
+frontend/frontend-runtime.log
+backend/server.log
