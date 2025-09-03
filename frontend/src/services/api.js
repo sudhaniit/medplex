@@ -62,7 +62,7 @@ export const authAPI = {
     formData.append('password', data.password);
     return api.post('/login', formData, {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
     });
   },
@@ -77,7 +77,7 @@ export const authAPI = {
     formData.append('password', data.password);
     return api.post('/login/manufacturer', formData, {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
     });
   },
