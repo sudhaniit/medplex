@@ -56,31 +56,19 @@ export const authAPI = {
   registerHospital: (data) => api.post('/register', data),
   
   // Hospital user login
-  loginHospital: (data) => {
-    const formData = new FormData();
-    formData.append('username', data.email);
-    formData.append('password', data.password);
-    return api.post('/login', formData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  },
+  loginHospital: (data) => api.post('/login', {
+    username: data.email,
+    password: data.password
+  }),
   
   // Manufacturer registration
   registerManufacturer: (data) => api.post('/register/manufacturer', data),
   
   // Manufacturer login
-  loginManufacturer: (data) => {
-    const formData = new FormData();
-    formData.append('username', data.email);
-    formData.append('password', data.password);
-    return api.post('/login/manufacturer', formData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  },
+  loginManufacturer: (data) => api.post('/login/manufacturer', {
+    username: data.email,
+    password: data.password
+  }),
 };
 
 // Risk assessment API calls
@@ -90,8 +78,7 @@ export const riskAPI = {
   
   // Report device failure
   reportFailure: (data) => api.post('/report_failure', data),
-  
-  // Submit feedback
+  // Submit feedback (continuous learning)
   submitFeedback: (data) => api.post('/continuous_learning', data),
 };
 

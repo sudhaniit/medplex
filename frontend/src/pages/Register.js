@@ -26,9 +26,7 @@ const Register = () => {
         response = await authAPI.registerManufacturer({
           email: data.email,
           password: data.password,
-          name: data.manufacturerName,
-          description: data.description,
-          website: data.website
+          manufacturer_name: data.manufacturerName
         });
       }
 

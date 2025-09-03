@@ -54,12 +54,23 @@ const RiskAssessmentResult = () => {
 
     setFeedbackLoading(true);
     try {
-      await riskAPI.submitFeedback({
-        deviceId: result.device.id,
-        feedbackText: data.feedbackText,
-        rating: parseInt(data.rating),
-        category: data.category || 'General'
-      });
+      const rating = parseInt(data.rating);
+      const actionLevelMap = { 5: 'Info', 4: 'Low', 3: 'Medium', 2: 'High', 1: 'Urgent' };
+      const payload = {
+        device_name: result.device.name,
+        manufacturer_name: result.device.manufacturerName,
+        risk_class: `${result.device.riskClass} Risk`,
+        risk_percent: result.device.riskPercentage,
+        suggested_alternatives: (result.alternatives || []).map(a => a.name),
+        source: 'hospital_feedback',
+        notes: data.feedbackText,
+        action_summary: 'User feedback submitted via UI',
+        action_level: actionLevelMap[rating] || 'Info',
+        action_classification: data.category || 'General',
+        country: 'USA'
+      };
+
+      await riskAPI.submitFeedback(payload);
 
       toast.success('Feedback submitted successfully!');
       setShowFeedbackForm(false);

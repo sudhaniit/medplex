@@ -42,8 +42,9 @@ const DeviceRiskChecker = () => {
     setLoading(true);
     try {
       const response = await riskAPI.checkRisk({
-        manufacturerName: data.manufacturerName,
-        deviceName: data.deviceName
+        manufacturer_name: data.manufacturerName,
+        device_name: data.deviceName,
+        country: 'USA'
       });
 
       const result = response.data.data;
